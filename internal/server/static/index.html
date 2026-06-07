@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>cloudfunction233</title>
+  <link rel="stylesheet" href="/admin/styles.css">
+</head>
+<body>
+  <main class="shell">
+    <aside class="side">
+      <div class="brand">cloudfunction233</div>
+      <nav>
+        <button class="nav active" data-panel="functions">函数</button>
+        <button class="nav" data-panel="runtimes">运行时</button>
+        <button class="nav" data-panel="tcp">TCP 结构</button>
+      </nav>
+      <button id="logout" class="ghost">退出</button>
+    </aside>
+
+    <section id="login-panel" class="login">
+      <form id="login-form" class="login-box">
+        <h1>登录管理台</h1>
+        <label>用户名 <input name="username" value="root" autocomplete="username"></label>
+        <label>密码 <input name="password" type="password" value="root" autocomplete="current-password"></label>
+        <button type="submit">登录</button>
+        <p id="login-error"></p>
+      </form>
+    </section>
+
+    <section id="app-panel" class="workspace hidden">
+      <header>
+        <div>
+          <h1>HTTP 云函数</h1>
+          <p id="session">未登录</p>
+        </div>
+        <button id="refresh">刷新</button>
+      </header>
+
+      <section id="functions" class="panel active">
+        <div class="split">
+          <div>
+            <h2>项目 / 函数路径</h2>
+            <table>
+              <thead>
+                <tr><th>项目</th><th>名称</th><th>路径</th><th>运行时</th><th>操作</th></tr>
+              </thead>
+              <tbody id="function-list"></tbody>
+            </table>
+          </div>
+          <form id="function-form" class="editor">
+            <h2>创建或修改</h2>
+            <label>项目 <input name="project" value="default"></label>
+            <label>函数名 <input name="name" value="hello"></label>
+            <label>HTTP 路径 <input name="route" value="/default/hello"></label>
+            <label>运行时
+              <select name="runtime"></select>
+            </label>
+            <label>入口文件 <input name="entrypoint" value="index.js"></label>
+            <label>处理器 <input name="handler" value="fetch"></label>
+            <label>文件内容 <textarea name="source" spellcheck="false">export default {
+  async fetch() {
+    return new Response("hello")
+  }
+}</textarea></label>
+            <label>静态响应体 <input name="staticBody" value="hello from static runtime"></label>
+            <button type="submit">保存函数</button>
+            <p id="form-status"></p>
+          </form>
+        </div>
+      </section>
+
+      <section id="runtimes" class="panel">
+        <h2>内置运行时</h2>
+        <div id="runtime-list" class="runtime-list"></div>
+      </section>
+
+      <section id="tcp" class="panel">
+        <h2>TCP 协议结构</h2>
+        <div id="tcp-config" class="tcp-config"></div>
+      </section>
+    </section>
+  </main>
+  <script src="/admin/app.js"></script>
+</body>
+</html>

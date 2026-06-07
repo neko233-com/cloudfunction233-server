@@ -1,0 +1,5 @@
+bin/
+data/
+config.json
+config.yaml
+*.log
