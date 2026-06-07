@@ -96,5 +96,6 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
           TAG: ${{ github.ref_name }}
+          REPO: ${{ github.repository }}
         run: |
-          gh release create "$TAG" release/* --title "$TAG" --notes "cloudfunction233-server $TAG"
+          gh release create "$TAG" release/* --repo "$REPO" --title "$TAG" --notes "cloudfunction233-server $TAG"
